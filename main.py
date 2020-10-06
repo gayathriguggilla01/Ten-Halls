@@ -3,7 +3,6 @@ from menu import newGame, loadGame, difficultyLevel, quitGame, scriptDirPath
 from play import playGame
 from utils import clearScreen, userInput, display
 
-
 menuOptions = {
     'n': newGame,
     'l': loadGame,
@@ -23,7 +22,6 @@ def mainMenu() :
 
         print('    [ Enter your choice ]\n')
         result = menuOptions[userInput()]()
-
         if result == 'quit' :
             clearScreen(); return False
         elif result == 'play' :
@@ -40,4 +38,3 @@ if __name__ == '__main__' :
     if mainMenu() :
         from menu import saveFile
         playGame(saveFile)
-        pass
