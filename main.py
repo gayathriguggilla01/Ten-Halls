@@ -12,6 +12,7 @@ menuOptions = {
 
 
 def mainMenu() :
+    # TODO - Handle undefined keys for menu options dictionary
     print(display['title'])
     while True :
         if userInput() == 's' : break
@@ -20,7 +21,6 @@ def mainMenu() :
         clearScreen()
         print(display['mainmenu'])
 
-        print('    [ Enter your choice ]\n')
         result = menuOptions[userInput()]()
         if result == 'quit' :
             clearScreen(); return False

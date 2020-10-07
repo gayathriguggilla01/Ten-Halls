@@ -3,6 +3,7 @@ from msvcrt import getch
 
 clearScreen = lambda : os.system('cls')
 userInput = lambda : getch().decode()
+deleteFile = lambda filepath : os.remove(filepath)
 
 display = {
     'title' : '\n'
@@ -25,6 +26,18 @@ display = {
                  '    |    (q)  QUIT\n'
                  '    |\n'
                  '    |\n',
+    'deletesave' : '\n'
+                   '     __________________________\n'
+                   '    |\n'
+                   '    |    DELETE SAVE FILE\n'
+                   '    |\n'
+                   '    |    (1)  {}\n'
+                   '    |    (2)  {}\n'
+                   '    |    (3)  {}\n'
+                   '    |\n'
+                   '    |    (b)  Back\n'
+                   '    |\n'
+                   '    |\n',
     'loadgame' : '\n'
                  '     __________________________\n'
                  '    |\n'
@@ -34,6 +47,7 @@ display = {
                  '    |    (2)  {}\n'
                  '    |    (3)  {}\n'
                  '    |\n'
+                 '    |    (d)  Delete\n'
                  '    |    (b)  Back\n'
                  '    |\n'
                  '    |\n',
@@ -48,10 +62,10 @@ display = {
                         '    |    (b)  Back\n'
                         '    |\n'
                         '    |\n',
-    'quitgame' : '\n'
+    'confirm' : '\n'
                  '     __________________________\n'
                  '    |\n'
-                 '    |        QUIT\n'
+                 '    |       {}\n'
                  '    |    Are you sure?\n'
                  '    |\n'
                  '    |      Y      N\n'
