@@ -8,12 +8,42 @@ scriptDirPath = os.path.dirname(__file__)
 saveFile = None
 
 def newGame() :
-    tutorial()
+    global saveFile
+    savefiles = glob.glob(os.path.join(scriptDirPath, 'saves', '*'))
+    saves = [os.path.basename(file) for file in savefiles]
+    saves.extend(['-EMPTY-', '-EMPTY-', '-EMPTY-'])
 
+    clearScreen()
+    print(display['newgame']['name'], end='')
+    name = input()
+
+    if len(savefiles) == 3 :
+        clearScreen()
+        print(display['newgame']['saveerror'])
+        while True :
+            choice = userInput()
+            if choice == 'y' :
+                deleteSave(saves, True)
+                break
+            elif choice == 'n' :
+                return 'back'
+
+    clearScreen()
+    print(display['newgame']['tutorial'].format(name))
+    while True :
+        choice = userInput()
+        if choice == 'y' :
+            tutorial()
+            break
+        elif choice == 'n' :
+            break
+
+    saveFile = os.path.join(scriptDirPath, 'saves', name)
+    open(saveFile, 'x').close()
     return 'play'
 
 
-def deleteSave(savelist) :
+def deleteSave(savelist, fromSaveError = False) :
     _invalid = ''
     while True :
         _1, _2, _3 = savelist[:3]
@@ -38,6 +68,7 @@ def deleteSave(savelist) :
                 elif confirm == 'y' :
                     deleteFile(os.path.join(scriptDirPath, 'saves', savelist[int(choice)-1]))
                     savelist.pop(int(choice)-1)
+                    if fromSaveError : return
                     break
 
     return savelist
@@ -46,7 +77,7 @@ def deleteSave(savelist) :
 def loadGame() :
     global saveFile
     _invalid = ''
-    savefiles = glob.glob(scriptDirPath + '/saves/*')
+    savefiles = glob.glob(os.path.join(scriptDirPath, 'saves', '*'))
     saves = [os.path.basename(file) for file in savefiles]
     saves.extend(['-EMPTY-', '-EMPTY-', '-EMPTY-'])
 
