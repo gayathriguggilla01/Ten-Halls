@@ -12,16 +12,21 @@ menuOptions = {
 
 
 def mainMenu() :
-    # TODO - Handle undefined keys for menu options dictionary
     print(display['title'])
     while True :
         if userInput() == 's' : break
 
+    _invalid = ''
     while True :
         clearScreen()
-        print(display['mainmenu'])
+        print(display['mainmenu'] + _invalid)
+        _invalid = ''
 
-        result = menuOptions[userInput()]()
+        choice = userInput()
+        if choice not in 'nldq' :
+            _invalid = '\n    [ Please choose valid option ]\n'
+            continue
+        result = menuOptions[choice]()
         if result == 'quit' :
             clearScreen(); return False
         elif result == 'play' :
