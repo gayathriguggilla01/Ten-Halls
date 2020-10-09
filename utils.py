@@ -1,9 +1,16 @@
 import os
-from msvcrt import getch
+import platform
 
-clearScreen = lambda : os.system('cls')
-userInput = lambda : getch().decode()
 deleteFile = lambda filepath : os.remove(filepath)
+OS = platform.system()
+if OS == 'Windows' :
+    from msvcrt import getch
+    clearScreen = lambda : os.system('cls')
+    userInput = lambda: getch().decode()
+elif OS == 'Linux' :
+    from getch import getch
+    clearScreen = lambda : os.system('clear')
+    userInput = lambda: getch().decode()
 
 display = {
     'title' : '\n'
