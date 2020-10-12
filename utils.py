@@ -2,6 +2,7 @@ import os
 import platform
 
 deleteFile = lambda filepath : os.remove(filepath)
+
 OS = platform.system()
 if OS == 'Windows' :
     from msvcrt import getch
@@ -10,7 +11,10 @@ if OS == 'Windows' :
 elif OS == 'Linux' :
     from getch import getch
     clearScreen = lambda : os.system('clear')
-    userInput = lambda: getch().decode()
+    userInput = lambda: getch()
+
+def createSaveFile() :
+    pass
 
 display = {
     'title' : '\n'
