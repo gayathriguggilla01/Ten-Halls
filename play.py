@@ -76,11 +76,16 @@ class Player :
     def move(self, userinput) :
         mapgrid = self.currentMap.mapGrid
         pxy = self.currentMap.pXY; px, py = pxy
-        inputKey_to_arrayChange = dict(w=(-1,0),s=(1,0),a=(0,-1),d=(0,1))
-        dx,dy = inputKey_to_arrayChange[userinput]
+        inputKey_to_positionChange = dict(w=(-1,0),s=(1,0),a=(0,-1),d=(0,1))
+        dx,dy = inputKey_to_positionChange[userinput]
         if mapgrid[px+dx][py+dy] == 2 :
             mapgrid[px][py], mapgrid[px+dx][py+dy] = 2, 0
             pxy[0] += dx; pxy[1] += dy
+        elif mapgrid[px+dx][py+dy] == 3 :
+            self.interact(3)
+
+    def interact(self, tiletype) :
+        pass
 
 
 def tutorial() :
@@ -93,10 +98,11 @@ def tutorial() :
         choice = userInput()
         if choice == 'q' :
             break
-        else :
+        elif choice in 'wasd' :
             tutplayer.move(choice)
 
     del tutmap, tutplayer
+
 
 def playGame(savefile) :
     clearScreen()
