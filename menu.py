@@ -7,6 +7,7 @@ difficulty = 0      # 0 or 1
 scriptDirPath = os.path.dirname(__file__)
 saveFile = None
 
+
 def newGame() :
     global saveFile
     savefiles = glob.glob(os.path.join(scriptDirPath, 'saves', '*'))
@@ -43,7 +44,7 @@ def newGame() :
     return 'play'
 
 
-def deleteSave(savelist, fromSaveError = False) :
+def deleteSave(savelist, fromSaveError=False) :
     _invalid = ''
     while True :
         _1, _2, _3 = savelist[:3]

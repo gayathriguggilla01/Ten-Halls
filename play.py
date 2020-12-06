@@ -1,6 +1,7 @@
 from utils import clearScreen, userInput
 from classes import Map, Player
 
+
 def tutorial() :
     tutplayer = Player('Tutorial')
     tutmap = Map(tut=True)

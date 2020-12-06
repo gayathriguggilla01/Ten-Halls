@@ -9,12 +9,15 @@ if OS == 'Windows' :
     clearScreen = lambda : os.system('cls')
     userInput = lambda: getch().decode()
 elif OS == 'Linux' :
+    # noinspection PyUnresolvedReferences
     from getch import getch
     clearScreen = lambda : os.system('clear')
     userInput = lambda: getch()
 
+
 def createSaveFile() :
     pass
+
 
 display = {
     'title' : '\n'

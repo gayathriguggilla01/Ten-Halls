@@ -4,6 +4,7 @@ import numpy as np
 MapTiles = ['O', '#', '.', 'X', '@']
 LvlUpXP = np.array([10, 30, 60, 100, 150, 210, 270, 340, 420, 500], dtype=int)
 
+
 class Map :
     def __init__(self, save=None, hall=0, mapsize=20, tut=False) :
         self.hall = None
@@ -76,8 +77,11 @@ class Player :
     def move(self, userinput) :
         mapgrid = self.currentMap.mapGrid
         pxy = self.currentMap.pXY; px, py = pxy
-        inputKey_to_positionChange = dict(w=(-1,0),s=(1,0),a=(0,-1),d=(0,1))
-        dx,dy = inputKey_to_positionChange[userinput]
+        inputKey_to_positionChange = dict(w=(-1, 0),
+                                          a=(0, -1),
+                                          s=(1, 0),
+                                          d=(0, 1))
+        dx, dy = inputKey_to_positionChange[userinput]
         if mapgrid[px+dx][py+dy] == 2 :
             mapgrid[px][py], mapgrid[px+dx][py+dy] = 2, 0
             pxy[0] += dx; pxy[1] += dy
